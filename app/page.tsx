@@ -3,6 +3,7 @@ import { cookies } from "next/headers";
 import AuthButtonServer from "./auth-button-server";
 import { redirect } from "next/navigation";
 import { Database } from "@/lib/database.types";
+import NewTweets from "./new-tweets";
 
 export default async function Home() {
   const supabase = createServerComponentClient<Database>({ cookies });
@@ -22,6 +23,7 @@ export default async function Home() {
   return (
     <>
       <AuthButtonServer />
+      <NewTweets />
       <pre>{JSON.stringify(tweets, null, 2)}</pre>
     </>
   );
