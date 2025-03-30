@@ -3,7 +3,8 @@
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from "next/navigation";
 
-export default function Likes({ tweet }) {
+
+export default function Likes({ tweet }: { tweet: TweetWithAuthor }) {
   const router = useRouter();
   const handleLikes = async () => {
     const supabase = createClientComponentClient<Database>();
@@ -15,8 +16,10 @@ export default function Likes({ tweet }) {
         await supabase
           .from("likes")
           .delete()
-          .eq("tweet_id", tweet.id)
-          .eq("user_id", user.id);
+          .match({
+            tweet_id: tweet.id,
+            user_id: user.id,
+          });
       } else {
         await supabase.from("likes").insert({
           tweet_id: tweet.id,
