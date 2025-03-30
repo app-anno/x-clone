@@ -5,6 +5,8 @@ import { Database } from "@/lib/database.types";
 import NewTweets from "./new-tweets";
 import Tweets from "./tweets";
 
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
   const supabase = createServerComponentClient<Database>({ cookies });
 
@@ -35,10 +37,6 @@ export default async function Home() {
       <div className="sticky top-0 z-10 bg-black/80 backdrop-blur-md border-b border-gray-800">
         <div className="flex items-center justify-between px-4 py-3">
           <h1 className="text-xl font-bold">ホーム</h1>
-          <div className="flex space-x-4">
-            <button className="text-gray-400 hover:text-white">すべて</button>
-            <button className="text-gray-400 hover:text-white">フォロー中</button>
-          </div>
         </div>
       </div>
 
